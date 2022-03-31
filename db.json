@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "itemCode": "a1",
+      "itemName": "apple",
+      "itemPrice": 2.5,
+      "itemQuentity": 20
+    },
+    {
+      "itemCode": "a2",
+      "itemName": "banana",
+      "itemPrice": 2,
+      "itemQuentity": 14
+    },
+    {
+      "itemCode": "a3",
+      "itemName": "orange",
+      "itemPrice": 4,
+      "itemQuentity": 10
+    }
+  ]
+}
