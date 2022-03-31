@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import {
@@ -9,8 +9,16 @@ import {
 } from "react-router-dom";
 import Storage from "./page/Storage";
 import ItemList from "./page/ItemList/index";
+// import { useAppDispatch } from "./app/hooks";
+// import { getItemsAsync } from "./slice/items/index";
 
 function App() {
+  // const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getItemsAsync());
+  // }, [dispatch]);
+
   return (
     <Router>
       <div className="App">

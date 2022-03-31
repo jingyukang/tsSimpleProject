@@ -7,7 +7,7 @@ const ItemList = (): JSX.Element => {
   const allItems: Array<IItem> = useAppSelector(selectAllItems);
 
   const renderList = allItems.map((item: IItem) => (
-    <tr key={item.itemCode}>
+    <tr key={item.id}>
       <td>{item.itemName}</td>
       <td>{item.itemPrice}</td>
       <td>{item.itemQuentity}</td>

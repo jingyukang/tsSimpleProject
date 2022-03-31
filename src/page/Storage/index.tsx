@@ -1,37 +1,63 @@
-import { useState, FormEvent, Fragment } from "react";
+import { useState, FormEvent, Fragment, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
-  addItem,
-  editItem,
-  removeItem,
+  createItemAsync,
+  deleteItemAsync,
+  getItemsAsync,
   selectAllItems,
+  updateItemAsync,
 } from "../../slice/items";
-import { IItem } from "../../model/items/index";
+import {
+  IItem,
+  IItemCreatePayload,
+  IItemUpdatePayload,
+} from "../../model/items/index";
 
 const Storage = (): JSX.Element => {
   const allItems: Array<IItem> = useAppSelector(selectAllItems);
   const dispatch = useAppDispatch();
+
   const [item, setItem] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [quentity, setQuentity] = useState<number>(0);
+
   const [updatePrice, setUpdatePrice] = useState<number>(0);
   const [updateQuentity, setUpdateQuentity] = useState<number>(0);
 
-  const addItemButton = (e: FormEvent) => {
+  useEffect(() => {
+    dispatch(getItemsAsync());
+  }, [dispatch]);
+
+  const addItemButton = (e: FormEvent): void => {
     e.preventDefault();
-    dispatch(addItem(item, price, quentity));
+    const newItem: IItemCreatePayload = {
+      itemName: item,
+      itemPrice: price,
+      itemQuentity: quentity,
+    };
+    dispatch(createItemAsync(newItem));
   };
 
-  const deleteItemButton = (code: string) => {
-    dispatch(removeItem(code));
+  const deleteItemButton = (id: number) => {
+    dispatch(deleteItemAsync(id));
+    dispatch(getItemsAsync());
   };
 
-  const updateItemButton = (payload: IItem) => {
-    dispatch(editItem(payload));
+  const updateItemButton = (item: IItem) => {
+    const payload: IItemUpdatePayload = {
+      ...item,
+      itemPrice: updatePrice,
+      itemQuentity: updateQuentity,
+    };
+    dispatch(updateItemAsync(payload));
   };
+
+  // const updateItemButton = (payload: IItem) => {
+  //   dispatch(editItem(payload));
+  // };
 
   const renderItems = allItems.map((item: IItem) => (
-    <Fragment key={item.itemCode}>
+    <Fragment key={item.id}>
       <tr>
         <td>{item.itemName}</td>
         <td>{item.itemPrice}</td>
@@ -39,7 +65,7 @@ const Storage = (): JSX.Element => {
         <td>
           <button
             onClick={() => {
-              deleteItemButton(item.itemCode);
+              deleteItemButton(item.id);
             }}
           >
             delete
@@ -67,9 +93,16 @@ const Storage = (): JSX.Element => {
         <td>
           <button
             onClick={() => {
+              updateItemButton(item);
+            }}
+          >
+            Update
+          </button>
+          {/* <button
+            onClick={() => {
               const payload: IItem = {
                 ...item,
-                itemCode: item.itemCode,
+                id: item.id,
                 itemPrice: updatePrice,
                 itemQuentity: updateQuentity,
               };
@@ -77,7 +110,7 @@ const Storage = (): JSX.Element => {
             }}
           >
             Update
-          </button>
+          </button> */}
         </td>
       </tr>
     </Fragment>

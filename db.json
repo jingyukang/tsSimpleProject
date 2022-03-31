@@ -1,22 +1,22 @@
 {
   "items": [
     {
-      "itemCode": "a1",
+      "id": "1",
       "itemName": "apple",
       "itemPrice": 2.5,
-      "itemQuentity": 20
+      "itemQuentity": 30
     },
     {
-      "itemCode": "a2",
+      "id": "2",
       "itemName": "banana",
-      "itemPrice": 2,
-      "itemQuentity": 14
+      "itemPrice": 3,
+      "itemQuentity": 25
     },
     {
-      "itemCode": "a3",
+      "id": "3",
       "itemName": "orange",
-      "itemPrice": 4,
-      "itemQuentity": 10
+      "itemPrice": 2.5,
+      "itemQuentity": 30
     }
   ]
 }
