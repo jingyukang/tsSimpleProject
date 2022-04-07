@@ -3,20 +3,58 @@
     {
       "id": "1",
       "itemName": "apple",
-      "itemPrice": 2.5,
-      "itemQuentity": 30
+      "itemPrice": 1,
+      "itemQuentity": 40
     },
     {
       "id": "2",
       "itemName": "banana",
       "itemPrice": 3,
-      "itemQuentity": 25
+      "itemQuentity": 15
     },
     {
       "id": "3",
       "itemName": "orange",
       "itemPrice": 2.5,
       "itemQuentity": 30
+    },
+    {
+      "itemName": "water 1L",
+      "itemPrice": 1,
+      "itemQuentity": 50,
+      "id": "7Q_C9v-"
+    },
+    {
+      "itemName": "cup",
+      "itemPrice": 2,
+      "itemQuentity": 12,
+      "id": "gAGSiQk"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "itemName": "apple",
+      "itemPrice": 2.5,
+      "itemQuentity": 5
+    },
+    {
+      "id": "2",
+      "itemName": "banana",
+      "itemPrice": 3,
+      "itemQuentity": 5
+    },
+    {
+      "id": "3",
+      "itemName": "orange",
+      "itemPrice": 2.5,
+      "itemQuentity": 6
+    },
+    {
+      "itemName": "water",
+      "itemPrice": 1,
+      "itemQuentity": 4,
+      "id": "7Q_C9v-"
     }
   ]
 }

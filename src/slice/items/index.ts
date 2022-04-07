@@ -7,7 +7,7 @@ import {
   updateItem,
   deleteItem,
 } from "../../api/item/index";
-import { IItemCreatePayload, IItemUpdatePayload } from "../../model/items";
+import { IItemCreatePayload, IItemUpdatePayload } from "../../model";
 
 export interface IItemState {
   allItems: Array<IItem>;
@@ -42,9 +42,7 @@ export const itemSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<IItem>) => {
-      !state.allItems.find((i) => i.itemName === action.payload.itemName)
-        ? (state.allItems = [...state.allItems, action.payload])
-        : alert("The Item is already on the List");
+      state.allItems = [...state.allItems, action.payload];
     },
     removeItem: (state, action: PayloadAction<number>) => {
       state.allItems = state.allItems.filter((i) => i.id !== action.payload);

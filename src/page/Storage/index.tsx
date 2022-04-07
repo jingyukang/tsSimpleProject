@@ -1,4 +1,4 @@
-import { useState, FormEvent, Fragment, useEffect } from "react";
+import { useState, FormEvent, Fragment } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   createItemAsync,
@@ -7,11 +7,7 @@ import {
   selectAllItems,
   updateItemAsync,
 } from "../../slice/items";
-import {
-  IItem,
-  IItemCreatePayload,
-  IItemUpdatePayload,
-} from "../../model/items/index";
+import { IItem, IItemCreatePayload, IItemUpdatePayload } from "../../model";
 
 const Storage = (): JSX.Element => {
   const allItems: Array<IItem> = useAppSelector(selectAllItems);
@@ -21,12 +17,9 @@ const Storage = (): JSX.Element => {
   const [price, setPrice] = useState<number>(0);
   const [quentity, setQuentity] = useState<number>(0);
 
+  const [updateName, setUpdateName] = useState<string>("");
   const [updatePrice, setUpdatePrice] = useState<number>(0);
   const [updateQuentity, setUpdateQuentity] = useState<number>(0);
-
-  useEffect(() => {
-    dispatch(getItemsAsync());
-  }, [dispatch]);
 
   const addItemButton = (e: FormEvent): void => {
     e.preventDefault();
@@ -35,7 +28,10 @@ const Storage = (): JSX.Element => {
       itemPrice: price,
       itemQuentity: quentity,
     };
-    dispatch(createItemAsync(newItem));
+
+    !allItems.find((i) => i.itemName === newItem.itemName)
+      ? dispatch(createItemAsync(newItem))
+      : alert("The Item is already on the List");
   };
 
   const deleteItemButton = (id: number) => {
@@ -46,15 +42,15 @@ const Storage = (): JSX.Element => {
   const updateItemButton = (item: IItem) => {
     const payload: IItemUpdatePayload = {
       ...item,
-      itemPrice: updatePrice,
-      itemQuentity: updateQuentity,
+      itemName: updateName === "" ? item.itemName : updateName,
+      itemPrice: updatePrice === 0 ? item.itemPrice : updatePrice,
+      itemQuentity: updateQuentity === 0 ? item.itemQuentity : updateQuentity,
     };
-    dispatch(updateItemAsync(payload));
-  };
 
-  // const updateItemButton = (payload: IItem) => {
-  //   dispatch(editItem(payload));
-  // };
+    updateName === "" && updatePrice === 0 && updateQuentity === 0
+      ? alert("Edit something")
+      : dispatch(updateItemAsync(payload));
+  };
 
   const renderItems = allItems.map((item: IItem) => (
     <Fragment key={item.id}>
@@ -73,10 +69,19 @@ const Storage = (): JSX.Element => {
         </td>
       </tr>
       <tr>
-        <td></td>
         <td>
           <input
             type="text"
+            placeholder="Item name change"
+            onChange={(e) => {
+              setUpdateName(e.target.value);
+            }}
+          />
+        </td>
+        <td>
+          <input
+            type="number"
+            placeholder="Number of Price"
             onChange={(e) => {
               setUpdatePrice(Number(e.target.value));
             }}
@@ -84,7 +89,8 @@ const Storage = (): JSX.Element => {
         </td>
         <td>
           <input
-            type="text"
+            type="number"
+            placeholder="Total Quentity Change"
             onChange={(e) => {
               setUpdateQuentity(Number(e.target.value));
             }}
@@ -98,19 +104,6 @@ const Storage = (): JSX.Element => {
           >
             Update
           </button>
-          {/* <button
-            onClick={() => {
-              const payload: IItem = {
-                ...item,
-                id: item.id,
-                itemPrice: updatePrice,
-                itemQuentity: updateQuentity,
-              };
-              updateItemButton(payload);
-            }}
-          >
-            Update
-          </button> */}
         </td>
       </tr>
     </Fragment>

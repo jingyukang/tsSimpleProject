@@ -13,7 +13,7 @@ export interface IItemCreatePayload {
 
 export interface IItemUpdatePayload {
   id: number;
-  itemName: string;
-  itemPrice: number;
-  itemQuentity: number;
+  itemName?: string;
+  itemPrice?: number;
+  itemQuentity?: number;
 }

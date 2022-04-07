@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { IItem } from "../../model";
-import { IItemCreatePayload, IItemUpdatePayload } from "../../model/items";
+import { IItemCreatePayload, IItemUpdatePayload } from "../../model";
 
 export const fetchItems = (): Promise<Array<IItem>> => {
   return new Promise<Array<IItem>>((resolve, reject) =>

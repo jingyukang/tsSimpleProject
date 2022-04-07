@@ -9,22 +9,22 @@ import {
 } from "react-router-dom";
 import Storage from "./page/Storage";
 import ItemList from "./page/ItemList/index";
-// import { useAppDispatch } from "./app/hooks";
-// import { getItemsAsync } from "./slice/items/index";
+import { useAppDispatch } from "./app/hooks";
+import { getItemsAsync } from "./slice/items";
 
 function App() {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getItemsAsync());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getItemsAsync());
+  }, [dispatch]);
 
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path={"/"} element={<>Hello</>} />
+          <Route path={"/"} element={<ItemList />} />
           <Route path={"/itemlist"} element={<ItemList />} />
           <Route path={"/storage"} element={<Storage />} />
           <Route path={"/invoice"} element={<>Invoice</>} />
