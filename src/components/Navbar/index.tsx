@@ -12,13 +12,13 @@ const Navbar = (): JSX.Element => {
       <div id="navbar_menus">
         <ul>
           <li>
-            <Link to={"/itemlist"}>Item List</Link>
+            <Link to={"/"}>Item List</Link>
           </li>
           <li>
-            <Link to={"/storage"}>Storage</Link>
+            <Link to={"/storagePage"}>Storage</Link>
           </li>
           <li>
-            <Link to={"/invoice"}>Invoice</Link>
+            <Link to={"/invoicePage"}>Invoice</Link>
           </li>
         </ul>
       </div>

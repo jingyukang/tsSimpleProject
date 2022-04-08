@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { IItem } from "../../../model";
 import { addCartItem, editCartItem } from "../../../slice/cartItem";
-import { selectAllCartItems } from "../../../slice/cartItem/index";
+import { selectAllCartItems } from "../../../slice/cartItem";
 import {
   addRestItemQuentity,
   editRestItemQuentity,
@@ -19,14 +19,14 @@ const RenderList = ({ item }: listProps): JSX.Element => {
     (i) => i.id === item.id
   )?.itemQuentity;
 
-  const showQuentityNum: number =
+  const showedQuentityNum: number =
     typeof preItemQ === "number"
       ? item.itemQuentity - preItemQ
       : item.itemQuentity;
   const [numOfQuentity, setNumOfQuentity] = useState<number>(0);
 
   const addToCartButton = (): void => {
-    numOfQuentity <= 0 || showQuentityNum < numOfQuentity
+    numOfQuentity <= 0 || showedQuentityNum < numOfQuentity
       ? alert("Invalid number")
       : allCartItems.find((i) => i.id === item.id)
       ? doUpdate()
@@ -40,7 +40,7 @@ const RenderList = ({ item }: listProps): JSX.Element => {
     };
     const newRestQuentityNum: IItem = {
       ...item,
-      itemQuentity: showQuentityNum,
+      itemQuentity: showedQuentityNum - numOfQuentity,
     };
     dispatch(addCartItem(newCartItem));
     dispatch(addRestItemQuentity(newRestQuentityNum));
@@ -57,7 +57,7 @@ const RenderList = ({ item }: listProps): JSX.Element => {
     };
     const editRestQuentityNum: IItem = {
       ...item,
-      itemQuentity: showQuentityNum,
+      itemQuentity: showedQuentityNum - numOfQuentity,
     };
     dispatch(editCartItem(editCartNum));
     dispatch(editRestItemQuentity(editRestQuentityNum));
@@ -67,7 +67,7 @@ const RenderList = ({ item }: listProps): JSX.Element => {
     <tr>
       <td>{item.itemName}</td>
       <td>{item.itemPrice}</td>
-      <td>{showQuentityNum}</td>
+      <td>{showedQuentityNum}</td>
       <td>
         <input
           type="text"

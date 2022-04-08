@@ -3,6 +3,7 @@ import cartItemReducer from "../slice/cartItem";
 import itemReducer from "../slice/items";
 import modalReducer from "../slice/modal";
 import restItemQuentityReducer from "../slice/restItemQuentity";
+import invoiceReducer from "../slice/invoice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     modalState: modalReducer,
     cartItem: cartItemReducer,
     restItemNum: restItemQuentityReducer,
+    invoices: invoiceReducer,
   },
 });
 

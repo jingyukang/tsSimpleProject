@@ -1,12 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { IItem } from "../../model";
-import {
-  fetchItems,
-  createItem,
-  updateItem,
-  deleteItem,
-} from "../../api/item/index";
+import { fetchItems, createItem, updateItem, deleteItem } from "../../api/item";
 import { IItemCreatePayload, IItemUpdatePayload } from "../../model";
 
 export interface IItemState {

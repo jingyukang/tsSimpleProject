@@ -1,15 +1,43 @@
 import React from "react";
 import { IItem } from "../../model";
-import { selectAllItems } from "../../slice/items/index";
-import { useAppSelector } from "../../app/hooks";
-import { selectAllCartItems } from "../../slice/cartItem";
+import { selectAllItems, updateItemAsync } from "../../slice/items";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { emptyCart, selectAllCartItems } from "../../slice/cartItem";
 import RenderList from "./RenderList";
 import RenderCart from "./RenderCart";
+import { createInvoiceAsync } from "../../slice/invoice";
+import { ICreateInvoicePayload } from "../../model/invoice";
 
-const ItemList = (): JSX.Element => {
+const ItemListPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const allItems: Array<IItem> = useAppSelector(selectAllItems);
 
-  const allCartItems = useAppSelector(selectAllCartItems);
+  const allCartItems: Array<IItem> = useAppSelector(selectAllCartItems);
+
+  const buttonGetInvoice = (): void => {
+    const newInvoice: ICreateInvoicePayload = {
+      // date: new Date().toISOString().slice(0, 10),
+      date: (new Date(), "dd-Mon-yyyy"),
+      items: allCartItems,
+    };
+
+    dispatch(createInvoiceAsync(newInvoice));
+
+    allItems.map((item) => {
+      allCartItems.map(async (i) => {
+        const updateQuentityPayload: IItem = {
+          ...item,
+          itemQuentity: item.itemQuentity - i.itemQuentity,
+        };
+
+        if (i.id === item.id) {
+          await dispatch(updateItemAsync(updateQuentityPayload));
+        }
+      });
+    });
+
+    dispatch(emptyCart());
+  };
 
   return (
     <div style={{ display: "flex" }}>
@@ -67,7 +95,12 @@ const ItemList = (): JSX.Element => {
               <td></td>
               <td></td>
               <td>
-                <button onClick={() => {}}>Get invoice</button>
+                <button
+                  disabled={allCartItems.length <= 0}
+                  onClick={buttonGetInvoice}
+                >
+                  Get invoice
+                </button>
               </td>
             </tr>
           </tbody>
@@ -77,4 +110,4 @@ const ItemList = (): JSX.Element => {
   );
 };
 
-export default ItemList;
+export default ItemListPage;

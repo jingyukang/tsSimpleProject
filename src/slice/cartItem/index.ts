@@ -27,10 +27,13 @@ const cartItemSlice = createSlice({
         i.id === action.payload.id ? action.payload : i
       );
     },
+    emptyCart: (state) => {
+      state.allCartItems = [];
+    },
   },
 });
 
-export const { addCartItem, removeCartItem, editCartItem } =
+export const { addCartItem, removeCartItem, editCartItem, emptyCart } =
   cartItemSlice.actions;
 
 export const selectAllCartItems = (state: RootState): Array<IItem> =>

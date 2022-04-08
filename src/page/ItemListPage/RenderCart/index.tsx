@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { IItem } from "../../../model";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { editCartItem } from "../../../slice/cartItem";
+import { editCartItem, removeCartItem } from "../../../slice/cartItem";
 import { editRestItemQuentity } from "../../../slice/restItemQuentity";
-import { selectAllItems } from "../../../slice/items/index";
+import { selectAllItems } from "../../../slice/items";
 
 interface cartItemProps {
   item: IItem;
@@ -18,7 +18,9 @@ const RenderCart = ({ item }: cartItemProps): JSX.Element => {
   );
 
   const changeQuentityButton = (): void => {
-    newQuentityNum <= 0 || maxQuentity < newQuentityNum
+    newQuentityNum === 0
+      ? dispatch(removeCartItem(item.id))
+      : newQuentityNum < 0 || maxQuentity < newQuentityNum
       ? alert("Invalid number")
       : doUpdate();
   };
