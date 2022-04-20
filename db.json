@@ -10,24 +10,24 @@
       "id": "2",
       "itemName": "banana",
       "itemPrice": 2,
-      "itemQuentity": 87
+      "itemQuentity": 62
     },
     {
       "id": "3",
       "itemName": "orange",
       "itemPrice": 2.5,
-      "itemQuentity": 87
+      "itemQuentity": 40
     },
     {
       "itemName": "water 1L",
       "itemPrice": 1,
-      "itemQuentity": 87,
+      "itemQuentity": 29,
       "id": "7Q_C9v-"
     },
     {
       "itemName": "cup",
       "itemPrice": 2,
-      "itemQuentity": 87,
+      "itemQuentity": 51,
       "id": "gAGSiQk"
     },
     {
@@ -39,35 +39,97 @@
   ],
   "invoices": [
     {
-      "date": "dd-Mon-yyyy",
+      "date": "2022-04-20",
       "items": [
         {
           "id": "2",
           "itemName": "banana",
           "itemPrice": 2,
-          "itemQuentity": 3
+          "itemQuentity": 1
         },
         {
           "itemName": "cup",
           "itemPrice": 2,
-          "itemQuentity": 3,
+          "itemQuentity": 1,
           "id": "gAGSiQk"
         },
         {
           "id": "3",
           "itemName": "orange",
           "itemPrice": 2.5,
-          "itemQuentity": 3
+          "itemQuentity": 1
         },
         {
           "itemName": "water 1L",
           "itemPrice": 1,
-          "itemQuentity": 3,
+          "itemQuentity": 1,
           "id": "7Q_C9v-"
         }
       ],
-      "total": 22.5,
+      "total": 7.5,
       "id": 1
+    },
+    {
+      "date": "2022-04-20",
+      "items": [
+        {
+          "id": "2",
+          "itemName": "banana",
+          "itemPrice": 2,
+          "itemQuentity": 11
+        },
+        {
+          "itemName": "cup",
+          "itemPrice": 2,
+          "itemQuentity": 22,
+          "id": "gAGSiQk"
+        },
+        {
+          "id": "3",
+          "itemName": "orange",
+          "itemPrice": 2.5,
+          "itemQuentity": 33
+        },
+        {
+          "itemName": "water 1L",
+          "itemPrice": 1,
+          "itemQuentity": 44,
+          "id": "7Q_C9v-"
+        }
+      ],
+      "total": 192.5,
+      "id": 3
+    },
+    {
+      "date": "2022-04-20",
+      "items": [
+        {
+          "id": "2",
+          "itemName": "banana",
+          "itemPrice": 2,
+          "itemQuentity": 11
+        },
+        {
+          "itemName": "cup",
+          "itemPrice": 2,
+          "itemQuentity": 11,
+          "id": "gAGSiQk"
+        },
+        {
+          "id": "3",
+          "itemName": "orange",
+          "itemPrice": 2.5,
+          "itemQuentity": 11
+        },
+        {
+          "itemName": "water 1L",
+          "itemPrice": 1,
+          "itemQuentity": 11,
+          "id": "7Q_C9v-"
+        }
+      ],
+      "total": 82.5,
+      "id": 4
     }
   ]
 }

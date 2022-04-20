@@ -22,8 +22,8 @@ const ItemListPage = (): JSX.Element => {
     );
 
     const newInvoice: ICreateInvoicePayload = {
-      // date: new Date().toISOString().slice(0, 10),
-      date: (new Date(), "dd-Mon-yyyy"),
+      date: new Date().toISOString().slice(0, 10),
+      // date: (new Date(), "dd-Mon-yyyy"),
       items: allCartItems,
       total: totalPrice,
     };

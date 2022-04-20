@@ -10,8 +10,8 @@ const InvoicePage = (): JSX.Element => {
   return (
     <>
       {allInvoices.length > 0 ? (
-        allInvoices.map((invoice, i) => (
-          <InvoiceList key={invoice.id} invoice={invoice} i={i} />
+        allInvoices.map((invoice) => (
+          <InvoiceList key={invoice.id} invoice={invoice} />
         ))
       ) : (
         <div>

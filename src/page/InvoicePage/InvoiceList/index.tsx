@@ -8,10 +8,9 @@ import {
 
 interface invoiceProps {
   invoice: IInvoice;
-  i: number;
 }
 
-const InvoiceList = ({ invoice, i }: invoiceProps): JSX.Element => {
+const InvoiceList = ({ invoice }: invoiceProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const invoiceItems: Array<IItem> = invoice.items;
 
@@ -21,20 +20,15 @@ const InvoiceList = ({ invoice, i }: invoiceProps): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="eachInvoice">
       <table>
         <tbody>
           <tr>
             <td>
-              <h2>{i + 1} Invoice</h2>
+              <h2>Invoice ID : {invoice.id}</h2>
             </td>
           </tr>
-          <tr>
-            <td>
-              <b>Invoice Id :</b>
-            </td>
-            <td>{invoice.id}</td>
-          </tr>
+          <tr></tr>
           <tr>
             <td>
               <b>Created date :</b>
