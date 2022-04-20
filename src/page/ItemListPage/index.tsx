@@ -15,10 +15,17 @@ const ItemListPage = (): JSX.Element => {
   const allCartItems: Array<IItem> = useAppSelector(selectAllCartItems);
 
   const buttonGetInvoice = (): void => {
+    let totalPrice: number = 0;
+
+    allCartItems.map(
+      (i: IItem) => (totalPrice += i.itemPrice * i.itemQuentity)
+    );
+
     const newInvoice: ICreateInvoicePayload = {
       // date: new Date().toISOString().slice(0, 10),
       date: (new Date(), "dd-Mon-yyyy"),
       items: allCartItems,
+      total: totalPrice,
     };
 
     dispatch(createInvoiceAsync(newInvoice));

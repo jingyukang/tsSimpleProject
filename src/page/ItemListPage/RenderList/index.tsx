@@ -66,7 +66,7 @@ const RenderList = ({ item }: listProps): JSX.Element => {
   return (
     <tr>
       <td>{item.itemName}</td>
-      <td>{item.itemPrice}</td>
+      <td>${item.itemPrice}</td>
       <td>{showedQuentityNum}</td>
       <td>
         <input

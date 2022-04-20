@@ -43,7 +43,7 @@ const RenderCart = ({ item }: cartItemProps): JSX.Element => {
   return (
     <tr>
       <td>{item.itemName}</td>
-      <td>{item.itemPrice}</td>
+      <td>${item.itemPrice}</td>
       <td>{item.itemQuentity}</td>
       <td>
         <input

@@ -4,7 +4,7 @@
       "id": "1",
       "itemName": "apple",
       "itemPrice": 2,
-      "itemQuentity": 87
+      "itemQuentity": 0
     },
     {
       "id": "2",
@@ -37,5 +37,37 @@
       "id": "JnCJ0fL"
     }
   ],
-  "invoices": []
+  "invoices": [
+    {
+      "date": "dd-Mon-yyyy",
+      "items": [
+        {
+          "id": "2",
+          "itemName": "banana",
+          "itemPrice": 2,
+          "itemQuentity": 3
+        },
+        {
+          "itemName": "cup",
+          "itemPrice": 2,
+          "itemQuentity": 3,
+          "id": "gAGSiQk"
+        },
+        {
+          "id": "3",
+          "itemName": "orange",
+          "itemPrice": 2.5,
+          "itemQuentity": 3
+        },
+        {
+          "itemName": "water 1L",
+          "itemPrice": 1,
+          "itemQuentity": 3,
+          "id": "7Q_C9v-"
+        }
+      ],
+      "total": 22.5,
+      "id": 1
+    }
+  ]
 }

@@ -16,41 +16,61 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
 
   const [updateName, setUpdateName] = useState<string | void>();
   const [updatePrice, setUpdatePrice] = useState<number | void>();
+  const [updateTotalQuentity, setUpdateTotalQuentity] = useState<
+    number | void
+  >();
   const [updateQuentity, setUpdateQuentity] = useState<number | void>();
-
-  const resetPageState = (): void => {
-    setUpdateName();
-    setUpdatePrice();
-    setUpdateQuentity();
-  };
 
   const deleteItemButton = () => {
     dispatch(deleteItemAsync(item.id));
     dispatch(getItemsAsync());
   };
 
-  const updateItemButton = () => {
+  const updateItemButton = (): void => {
     const payload: IItemUpdatePayload = {
       ...item,
       itemName: !updateName ? item.itemName : updateName,
       itemPrice: !updatePrice ? item.itemPrice : updatePrice,
-      itemQuentity: !updateQuentity ? item.itemQuentity : updateQuentity,
+      itemQuentity: !updateTotalQuentity
+        ? item.itemQuentity
+        : updateTotalQuentity,
     };
 
-    Number(updatePrice) < 0 || Number(updateQuentity) < 0
+    Number(updatePrice) < 0 || Number(updateTotalQuentity) < 0
       ? alert("Invalid number")
-      : !updateName && !updatePrice && !updateQuentity
+      : !updateName && !updatePrice && !updateTotalQuentity
       ? alert("Edit something")
       : dispatch(updateItemAsync(payload));
+  };
 
-    resetPageState();
+  const updatePlus = (): void => {
+    const payload: IItemUpdatePayload = {
+      ...item,
+      itemQuentity: !updateQuentity
+        ? item.itemQuentity
+        : item.itemQuentity + updateQuentity,
+    };
+    Number(updateQuentity) < 0
+      ? alert("Invalid number")
+      : dispatch(updateItemAsync(payload));
+  };
+  const updateMinus = (): void => {
+    const payload: IItemUpdatePayload = {
+      ...item,
+      itemQuentity: !updateQuentity
+        ? item.itemQuentity
+        : item.itemQuentity - updateQuentity,
+    };
+    Number(updateQuentity) < 0 || Number(updateQuentity) > item.itemQuentity
+      ? alert("Invalid number")
+      : dispatch(updateItemAsync(payload));
   };
 
   return (
     <>
       <tr>
         <td>{item.itemName}</td>
-        <td>{item.itemPrice}</td>
+        <td>${item.itemPrice}</td>
         <td>{item.itemQuentity}</td>
         <td>
           <button onClick={deleteItemButton}>delete</button>
@@ -80,12 +100,29 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
             type="number"
             placeholder="Total Quentity Change"
             onChange={(e) => {
-              setUpdateQuentity(Number(e.target.value));
+              setUpdateTotalQuentity(Number(e.target.value));
             }}
           />
         </td>
         <td>
           <button onClick={updateItemButton}>Update</button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>
+          <input
+            type="number"
+            placeholder={`Num for '${item.itemName}'`}
+            onChange={(e) => {
+              setUpdateQuentity(Number(e.target.value));
+            }}
+          />
+        </td>
+        <td>
+          <button onClick={updatePlus}>+</button>
+          <button onClick={updateMinus}>-</button>
         </td>
       </tr>
     </>

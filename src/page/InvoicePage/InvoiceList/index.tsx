@@ -30,23 +30,40 @@ const InvoiceList = ({ invoice, i }: invoiceProps): JSX.Element => {
             </td>
           </tr>
           <tr>
-            <td>Invoice Id :</td>
+            <td>
+              <b>Invoice Id :</b>
+            </td>
             <td>{invoice.id}</td>
           </tr>
           <tr>
-            <td>Created date :</td>
+            <td>
+              <b>Created date :</b>
+            </td>
             <td>{invoice.date}</td>
             <td></td>
+          </tr>
+          <tr>
+            <td>
+              <b>Item</b>
+            </td>
+            <td>
+              <b>Price</b>
+            </td>
+            <td>
+              <b>Quentity</b>
+            </td>
           </tr>
           {invoiceItems.map((i) => (
             <tr key={i.id}>
               <td>{i.itemName}</td>
-              <td>{i.itemPrice}</td>
+              <td>${i.itemPrice}</td>
               <td>{i.itemQuentity}</td>
             </tr>
           ))}
           <tr>
-            <td></td>
+            <td>
+              <b>Total Price: </b>${invoice.total}
+            </td>
             <td></td>
             <td>
               <button onClick={deleteInvoiceButton}>Delete Invoice</button>
