@@ -6,6 +6,10 @@ import {
   getItemsAsync,
   updateItemAsync,
 } from "../../../slice/items";
+import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import Input from "@mui/material/Input";
 
 interface storageItemProps {
   item: IItem;
@@ -73,12 +77,19 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
         <td>${item.itemPrice}</td>
         <td>{item.itemQuentity}</td>
         <td>
-          <button onClick={deleteItemButton}>delete</button>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            onClick={deleteItemButton}
+          >
+            Delete
+          </Button>
         </td>
       </tr>
       <tr>
         <td>
-          <input
+          <Input
             type="text"
             placeholder="Item name change"
             onChange={(e) => {
@@ -87,7 +98,7 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
           />
         </td>
         <td>
-          <input
+          <Input
             type="number"
             placeholder="Number of Price"
             onChange={(e) => {
@@ -96,7 +107,7 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
           />
         </td>
         <td>
-          <input
+          <Input
             type="number"
             placeholder="Total Quentity Change"
             onChange={(e) => {
@@ -105,14 +116,22 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
           />
         </td>
         <td>
-          <button onClick={updateItemButton}>Update</button>
+          <Button
+            size="small"
+            startIcon={<SendIcon />}
+            variant="outlined"
+            color="secondary"
+            onClick={updateItemButton}
+          >
+            Update
+          </Button>
         </td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td>
-          <input
+          <Input
             type="number"
             placeholder={`Num for '${item.itemName}'`}
             onChange={(e) => {
@@ -121,8 +140,17 @@ const RenderStorageItems = ({ item }: storageItemProps): JSX.Element => {
           />
         </td>
         <td>
-          <button onClick={updatePlus}>+</button>
-          <button onClick={updateMinus}>-</button>
+          <Button variant="outlined" size="small" onClick={updatePlus}>
+            +
+          </Button>
+          <Button
+            color="error"
+            variant="outlined"
+            size="small"
+            onClick={updateMinus}
+          >
+            -
+          </Button>
         </td>
       </tr>
     </>

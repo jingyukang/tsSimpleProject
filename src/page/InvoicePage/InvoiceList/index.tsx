@@ -5,6 +5,8 @@ import {
   deleteInvoiceAsync,
   getInvoicesAsync,
 } from "../../../slice/invoice/index";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface invoiceProps {
   invoice: IInvoice;
@@ -60,7 +62,10 @@ const InvoiceList = ({ invoice }: invoiceProps): JSX.Element => {
             </td>
             <td></td>
             <td>
-              <button onClick={deleteInvoiceButton}>Delete Invoice</button>
+              <Button onClick={deleteInvoiceButton}>
+                <DeleteIcon />
+                Delete Invoice
+              </Button>
             </td>
           </tr>
         </tbody>

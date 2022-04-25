@@ -7,6 +7,7 @@ import RenderList from "./RenderList";
 import RenderCart from "./RenderCart";
 import { createInvoiceAsync } from "../../slice/invoice";
 import { ICreateInvoicePayload } from "../../model/invoice";
+import Button from "@mui/material/Button";
 
 const ItemListPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -102,12 +103,15 @@ const ItemListPage = (): JSX.Element => {
               <td></td>
               <td></td>
               <td>
-                <button
+                <Button
                   disabled={allCartItems.length <= 0}
+                  color="success"
+                  variant="contained"
+                  size="small"
                   onClick={buttonGetInvoice}
                 >
                   Get invoice
-                </button>
+                </Button>
               </td>
             </tr>
           </tbody>

@@ -7,6 +7,9 @@ import {
   addRestItemQuentity,
   editRestItemQuentity,
 } from "../../../slice/restItemQuentity";
+// import Button from "@mui/material/Button";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Input, Button } from "@mui/material";
 
 interface listProps {
   item: IItem;
@@ -24,6 +27,7 @@ const RenderList = ({ item }: listProps): JSX.Element => {
       ? item.itemQuentity - preItemQ
       : item.itemQuentity;
   const [numOfQuentity, setNumOfQuentity] = useState<number>(0);
+  const ariaLabel = { "aria-label": "description" };
 
   const addToCartButton = (): void => {
     numOfQuentity <= 0 || showedQuentityNum < numOfQuentity
@@ -69,20 +73,24 @@ const RenderList = ({ item }: listProps): JSX.Element => {
       <td>${item.itemPrice}</td>
       <td>{showedQuentityNum}</td>
       <td>
-        <input
-          type="text"
+        <Input
+          type="number"
           placeholder="Number of quentity"
+          inputProps={ariaLabel}
           onChange={(e) => {
             setNumOfQuentity(Number(e.target.value));
           }}
         />
-        <button
+        <Button
+          variant="outlined"
+          size="small"
           onClick={() => {
             addToCartButton();
           }}
         >
+          <AddShoppingCartIcon />
           Add to cart
-        </button>
+        </Button>
       </td>
     </tr>
   );

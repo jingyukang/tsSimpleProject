@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { createItemAsync, selectAllItems } from "../../slice/items";
 import { IItem, IItemCreatePayload } from "../../model";
 import RenderStorageItems from "./RenderStorageItems";
+import { Button, Input } from "@mui/material";
 
 const StoragePage = (): JSX.Element => {
   const allItems: Array<IItem> = useAppSelector(selectAllItems);
@@ -33,31 +34,33 @@ const StoragePage = (): JSX.Element => {
 
       <form>
         <div>
-          <label htmlFor="item">Item:</label>
-          <input
+          <Input
+            placeholder="Item Name"
             type="text"
             name="item"
             onChange={(e) => {
               setItem(e.target.value);
             }}
           />
-          <label htmlFor="price">Price:</label>
-          <input
-            type="text"
+          <Input
+            placeholder="Number of Price"
+            type="number"
             name="price"
             onChange={(e) => {
               setPrice(Number(e.target.value));
             }}
           />
-          <label htmlFor="quentity">Quentity:</label>
-          <input
-            type="text"
+          <Input
+            placeholder="Number of Quentity"
+            type="number"
             name="quentity"
             onChange={(e) => {
               setQuentity(Number(e.target.value));
             }}
           />
-          <button onClick={addItemButton}>Add Item</button>
+          <Button size="small" variant="contained" onClick={addItemButton}>
+            Add Item
+          </Button>
         </div>
       </form>
       <table>

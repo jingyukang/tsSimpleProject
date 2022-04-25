@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { editCartItem, removeCartItem } from "../../../slice/cartItem";
 import { editRestItemQuentity } from "../../../slice/restItemQuentity";
 import { selectAllItems } from "../../../slice/items";
+import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
 
 interface cartItemProps {
   item: IItem;
@@ -46,20 +48,23 @@ const RenderCart = ({ item }: cartItemProps): JSX.Element => {
       <td>${item.itemPrice}</td>
       <td>{item.itemQuentity}</td>
       <td>
-        <input
+        <Input
           type="number"
           placeholder="Change Quentity"
           onChange={(e) => {
             setNewQuentityNum(Number(e.target.value));
           }}
         />
-        <button
+        <Button
+          color="secondary"
+          variant="contained"
+          size="small"
           onClick={() => {
             changeQuentityButton();
           }}
         >
           Change
-        </button>
+        </Button>
       </td>
     </tr>
   );
